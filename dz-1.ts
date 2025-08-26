@@ -106,3 +106,5 @@ function generateWords(number: number, words: string[] = []): string {
     words.push(word);
     return generateWords(remainder, words);
 }
+
+module.exports = toWords;
