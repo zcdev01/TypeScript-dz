@@ -12,7 +12,7 @@ class Map {
 		this.bucket = new Array(size);
 	}
 
-	add(key: string, value: number): void {
+	set(key: string, value: number): void {
 		const index = hash(key) % this.bucket.length
 
 		if (!this.bucket[index]) {
@@ -33,9 +33,10 @@ class Map {
 		if (!this.bucket[index]) {
 			throw new Error('Key not found')
 		} else {
-			for (let [k, v] of this.bucket[index]) {
-				if (k === key) return v
-			}
+			const found = this.bucket[index].find(pair => pair[0] === key);
+
+			if (found) return found[1]
+
 			throw new Error('Key not found')
 		}
 	}
@@ -44,15 +45,10 @@ class Map {
 		if (!this.bucket[index]) {
 			throw new Error('Key not found')
 		} else {
-			for (let [k, v] of this.bucket[index]) {
-				if (k === key) {
-					this.bucket[index] = this.bucket[index].filter(([k, v]) => k !== key)
-					break
-				}
-			}
+			this.bucket[index] = this.bucket[index].filter(([k]) => k !== key);
 		}
 	}
-	clean(): void {
+	clear(): void {
 		this.bucket = new Array(this.bucket.length);
 	}
 }
