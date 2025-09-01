@@ -10,15 +10,16 @@ interface User {
 	skills: string[]
 }
 
-const pickObjectKeys = <T>(data: T, keys: (keyof T)[]): Omit<T, keyof T> => {
-	const res = { ...data };
+const pickObjectKeys = <T, K extends keyof T>(data: T, keys: K[]): Pick<T, K> => {
+    const res = {} as Pick<T, K>;
+
 	for (let key of keys) {
-		delete res[key];
+		res[key] = data[key]
 	}
 
 	return res;
 }
 
-const res = pickObjectKeys<User>(user, ['age', 'skills']);
+const res = pickObjectKeys<User, keyof User>(user, ['age', 'name']);
 
 console.log(res)
