@@ -1,4 +1,4 @@
-import { sortBy } from "sort-by";
+import sortBy = require("sort-by");
 
 const users = [{
     id: 7,
