@@ -1,6 +1,6 @@
 type FeatchMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-class FetchTestBuilder {
+export class FetchTestBuilder {
 	private url: string;
 	private method?: FeatchMethod;
 	private headers?: HeadersInit;
@@ -8,8 +8,6 @@ class FetchTestBuilder {
 
 	constructor() {
 		this.url = '';
-		this.headers = {};
-		this.body = {};
 	}
 
 	public addUrl(url: string): FetchTestBuilder {
