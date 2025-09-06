@@ -42,6 +42,8 @@ class FetchTestBuilder {
 					);
 				}
 			}
+
+			this.headers = headersApi;
 		}
 		return this;
 	}
