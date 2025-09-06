@@ -1,13 +1,13 @@
 import { FetchTestBuilder } from './dz-12';
 
-class ProxeTest {
-	constructor(private api: (id: number) => Promise<any>) { }
+class ProxeTest<T extends any> {
+	constructor(private api: (id: number) => Promise<T>) { }
 
-    async getData<T>(id: number): Promise<T> {
+    async getData<U extends T>(id: number): Promise<U> {
         if (id >= 10) {
             throw new Error('id must be less than 10');
         }
-        return this.api(id);
+        return this.api(id) as Promise<U>;
     }
 }
 
